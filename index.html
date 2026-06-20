@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>النظام العسكري</header>
+
+<div class="grid">
+
+<div class="card">👤 الجنود <div id="s"></div></div>
+<div class="card">🪖 الوحدات <div id="u"></div></div>
+<div class="card">📋 المهام <div id="t"></div></div>
+<div class="card">🔫 الأسلحة <div id="w"></div></div>
+
+</div>
+
+<div class="grid">
+
+<div class="card"><a href="soldiers.html">دخول الجنود</a></div>
+<div class="card"><a href="units.html">دخول الوحدات</a></div>
+<div class="card"><a href="tasks.html">دخول المهام</a></div>
+<div class="card"><a href="weapons.html">دخول الأسلحة</a></div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/storage.js"></script>
+
+<script>
+document.getElementById("s").innerText=get("soldiers").length;
+document.getElementById("u").innerText=get("units").length;
+document.getElementById("t").innerText=get("tasks").length;
+document.getElementById("w").innerText=get("weapons").length;
+</script>
+
+</body>
+</html>

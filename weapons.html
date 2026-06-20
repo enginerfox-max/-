@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الأسلحة</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>الأسلحة</header>
+
+<a class="back" href="index.html">رجوع</a>
+
+<input id="weapon" placeholder="سلاح">
+<button onclick="add()">إضافة</button>
+
+<div id="box"></div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+
+<script>
+let weapons=get("weapons");
+let soldiers=get("soldiers");
+
+function save(){ set("weapons",weapons); }
+
+function add(){
+    weapons.push({id:Date.now(),name:weapon.value,owner:null});
+    save(); render();
+}
+
+function assign(w,sid){
+    w.owner=sid;
+    save(); render();
+}
+
+function render(){
+    let b=document.getElementById("box");
+    b.innerHTML="";
+
+    weapons.forEach(w=>{
+        b.innerHTML+=`
+        <div class="card">
+        <h3>${w.name}</h3>
+
+        <select id="w${w.id}">
+        ${soldiers.map(s=>`<option value="${s.id}">${s.name}</option>`)}
+        </select>
+
+        <button onclick="assignById(${w.id})">تسليم</button>
+        </div>`;
+    });
+}
+
+function assignById(id){
+    let w=weapons.find(x=>x.id===id);
+    let sid=document.getElementById("w"+id).value;
+    w.owner=sid;
+    save();
+    render();
+    toast("تم تسليم السلاح");
+}
+
+render();
+</script>
+
+</body>
+</html>

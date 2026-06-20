@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الجنود</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>إدارة الجنود</header>
+<a class="back" href="index.html">رجوع</a>
+<input class="search" oninput="search(this.value)" placeholder="بحث">
+<div>
+    <input id="name" placeholder="الاسم">
+    <select id="rank">
+        <option>جندي</option>
+        <option>ضابط</option>
+        <option>رقيب</option>
+        <option>ملازم</option>
+        <option>عميد</option>
+        <option>مشير</option>
+    </select>
+    <input id="age" type="number" placeholder="العمر">
+    <button onclick="add()">إضافة</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>الرتبة</th>
+            <th>العمر</th>
+            <th>الحالة</th>
+            <th>تحكم</th>
+            <th>السلاح</th></tr>
+    </thead>
+    <tbody id="table"></tbody>
+</table>
+<div id="toast" class="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/soldiers.js"></script>
+</body>
+</html>

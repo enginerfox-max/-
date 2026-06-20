@@ -1,0 +1,99 @@
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#0b1220;
+    color:white;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    padding:15px;
+    background:#111827;
+    font-size:20px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* INPUTS */
+input,select{
+    padding:10px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+}
+
+/* BUTTON */
+button{
+    padding:10px 12px;
+    background:#22c55e;
+    border:none;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #334155;
+    padding:10px;
+    text-align:center;
+}
+
+/* SEARCH */
+.search{
+    width:100%;
+    margin:10px 0;
+}
+
+/* STATUS */
+.ready{color:#22c55e;}
+.task{color:#f59e0b;}
+
+/* BACK */
+.back{
+    display:inline-block;
+    margin:10px;
+    padding:8px;
+    background:#ef4444;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#22c55e;
+    padding:10px;
+    border-radius:8px;
+    display:none;
+    z-index:999;
+}

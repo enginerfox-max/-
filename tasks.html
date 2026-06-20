@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>المهام</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>المهام</header>
+
+<a class="back" href="index.html">رجوع</a>
+
+<input id="task" placeholder="مهمة">
+<button onclick="addTask()">إضافة</button>
+
+<div id="box"></div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+
+<script>
+let tasks=get("tasks");
+let soldiers=get("soldiers");
+
+function save(){ set("tasks",tasks); }
+
+function addTask(){
+    tasks.push({id:Date.now(),name:task.value,assigned:null});
+    save(); render();
+}
+
+function assign(t,sid){
+    t.assigned=sid;
+    save(); render();
+}
+
+function render(){
+    let b=document.getElementById("box");
+    b.innerHTML="";
+
+    tasks.forEach(t=>{
+        b.innerHTML+=`
+        <div class="card">
+        <h3>${t.name}</h3>
+
+        <select id="t${t.id}">
+        ${soldiers.map(s=>`<option value="${s.id}">${s.name}</option>`)}
+        </select>
+
+        <button onclick="assignById(${t.id})">تعيين</button>
+        </div>`;
+    });
+}
+
+function assignById(id){
+    let t=tasks.find(x=>x.id===id);
+    let sid=document.getElementById("t"+id).value;
+    t.assigned=sid;
+    save();
+    render();
+    toast("تم تعيين المهمة");
+}
+
+render();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الوحدات</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>الوحدات</header>
+
+<a class="back" href="index.html">رجوع</a>
+
+<div>
+<input id="unit" placeholder="اسم الوحدة">
+<button onclick="addUnit()">إنشاء</button>
+</div>
+
+<div id="box"></div>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+
+<script>
+let units=get("units");
+let soldiers=get("soldiers");
+
+function save(){ set("units",units); }
+
+function addUnit(){
+    units.push({id:Date.now(),name:unit.value,s:[]});
+    save(); render();
+}
+
+function assign(u,sid){
+    u.s.push(sid);
+    save(); render();
+}
+
+function render(){
+    let b=document.getElementById("box");
+    b.innerHTML="";
+
+    units.forEach(u=>{
+        b.innerHTML+=`
+        <div class="card">
+        <h3>${u.name}</h3>
+
+        <select id="s${u.id}">
+        ${soldiers.map(s=>`<option value="${s.id}">${s.name}</option>`)}
+        </select>
+
+        <button onclick="assignById(${u.id})">إضافة</button>
+        </div>`;
+    });
+}
+
+function assignById(id){
+    let u=units.find(x=>x.id===id);
+    let sid=document.getElementById("s"+id).value;
+    u.s.push(sid);
+    save();
+    render();
+    toast("تم التعيين");
+}
+
+render();
+</script>
+
+</body>
+</html>
